@@ -5,7 +5,7 @@ MBennin's Personal Website
 <html lang="en" style="width:100%; height:100%;">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>kekayan's Resume</title>
+  <title>Matthew's Resume</title>
 </head>
   <body style="width:100%; height:100%; margin:0;">
     <iframe src="https://docs.google.com/gview?url=https://github.com/MBennin/MBennin.github.io/blob/63c9daf910404c2e121d0dcda2eae19cd42dfa26/Matthew%20Bennin%20Resume.pdf&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
