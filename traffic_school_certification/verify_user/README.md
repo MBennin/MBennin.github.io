@@ -4,7 +4,7 @@ A lightweight three-level joke verification site for GitHub Pages.
 
 ## Files
 
-- `verify_user.html`
+- `index.html`
 - `styles.css`
 - `app.js`
 
@@ -12,7 +12,7 @@ A lightweight three-level joke verification site for GitHub Pages.
 
 1. Export the certificate as an image.
 2. Name it `certificate-placeholder.png`.
-3. Put it in the same folder as `verify-user.html`.
+3. Put it in the same folder as `index.html`.
 
 For better privacy, redact the citation number, address, driver's license number,
 date of birth, case number, and any barcode or QR code before uploading it.
