@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="California Parent Traffic School Certificate Retrieval Portal" />
+  <title>Traffic School Certificate Retrieval Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="portal-card" aria-live="polite">
+      <header class="portal-header">
+        <div class="seal" aria-hidden="true">✓</div>
+        <div>
+          <p class="eyebrow">Unofficial Parent Verification System</p>
+          <h1>Traffic School Certificate Retrieval Portal</h1>
+        </div>
+      </header>
+
+      <div class="progress-wrapper">
+        <div class="progress-labels">
+          <span id="level-label">Level 1 of 3</span>
+          <span id="progress-percent">33%</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- LEVEL 1 -->
+      <section id="level-1" class="level active">
+        <h2>Parent Authentication</h2>
+        <p>
+          Due to an unusually high number of certificate status inquiries,
+          additional verification is required.
+        </p>
+
+        <form id="auth-form">
+          <label for="parent-name">Your name</label>
+          <input id="parent-name" name="parentName" type="text" required />
+
+          <fieldset>
+            <legend>Relationship to certificate holder</legend>
+
+            <label class="radio-row">
+              <input type="radio" name="relationship" value="Parent" required />
+              Parent
+            </label>
+
+            <label class="radio-row">
+              <input type="radio" name="relationship" value="Attorney" />
+              Attorney
+            </label>
+
+            <label class="radio-row">
+              <input type="radio" name="relationship" value="Insurance company" />
+              Insurance company
+            </label>
+
+            <label class="radio-row">
+              <input type="radio" name="relationship" value="Concerned Dad" />
+              Concerned Dad
+            </label>
+          </fieldset>
+
+          <label class="check-row">
+            <input id="asked-once" type="checkbox" required />
+            I acknowledge that I have asked about traffic school at least once.
+          </label>
+
+          <button type="submit">Continue Verification</button>
+        </form>
+      </section>
+
+      <!-- LEVEL 2 -->
+      <section id="level-2" class="level">
+        <h2>Concern Calibration Questionnaire</h2>
+        <p>
+          Our system has detected elevated concern levels. Please answer
+          truthfully so we can properly calibrate parental persistence.
+        </p>
+
+        <form id="concern-form">
+          <label for="frequency">How often did you ask about traffic school?</label>
+          <select id="frequency" required>
+            <option value="">Choose one...</option>
+            <option>Once</option>
+            <option>Every few weeks</option>
+            <option>Once a day</option>
+            <option>Every opportunity that presented itself</option>
+          </select>
+
+          <label for="deadline">The course was due...</label>
+          <select id="deadline" required>
+            <option value="">Choose one...</option>
+            <option>Yesterday</option>
+            <option>Next week</option>
+            <option>In over two months</option>
+            <option>I honestly do not remember anymore</option>
+          </select>
+
+          <label for="priority">Matthew was prioritizing...</label>
+          <select id="priority" required>
+            <option value="">Choose one...</option>
+            <option>Emptying the house</option>
+            <option>Preparing to move</option>
+            <option>Selling belongings</option>
+            <option>All of the above</option>
+          </select>
+
+          <button type="submit">Analyze Concern Level</button>
+        </form>
+
+        <div id="analysis-panel" class="analysis-panel hidden">
+          <p id="analysis-status">Analyzing responses...</p>
+          <div class="fake-loader">
+            <div id="fake-loader-bar"></div>
+          </div>
+          <ul id="analysis-log" class="analysis-log"></ul>
+        </div>
+      </section>
+
+      <!-- LEVEL 3 -->
+      <section id="level-3" class="level">
+        <h2>Certificate Release Authorization</h2>
+        <p>
+          Certificate located. Before release, please certify the following:
+        </p>
+
+        <form id="release-form">
+          <label class="check-row">
+            <input type="checkbox" required />
+            I understand repeatedly asking does not accelerate course completion.
+          </label>
+
+          <label class="check-row">
+            <input type="checkbox" required />
+            I recognize that my intentions were good.
+          </label>
+
+          <label class="check-row">
+            <input type="checkbox" required />
+            I may have been slightly annoying.
+          </label>
+
+          <label class="check-row">
+            <input type="checkbox" required />
+            I promise to celebrate instead of interrogate.
+          </label>
+
+          <button type="submit">Release Certificate</button>
+        </form>
+      </section>
+
+      <!-- REVEAL -->
+      <section id="certificate-reveal" class="level">
+        <div class="achievement">
+          <p class="eyebrow">Access Granted</p>
+          <h2>Traffic School Successfully Completed</h2>
+          <p>
+            Congratulations. You have successfully verified that Matthew
+            completed traffic school without requiring parental conservatorship.
+          </p>
+
+          <div class="badge">
+            <span>Achievement Unlocked</span>
+            <strong>Persistent Parent</strong>
+            <span>★★★★★</span>
+          </div>
+
+          <div class="certificate-placeholder">
+            <p>Replace this placeholder with the real certificate image.</p>
+            <img
+              src="certificate-placeholder.png"
+              alt="Traffic school completion certificate"
+              onerror="this.style.display='none'"
+            />
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="confetti-container" aria-hidden="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
