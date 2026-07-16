@@ -126,7 +126,7 @@ document.querySelector("#concern-form").onsubmit = async (e) => {
   const concernError = document.querySelector("#concern-error");
 
   const correctFrequency = "Every opportunity that presented itself";
-  const correctDeadline = "In over two months";
+  const correctDeadline = "In over two weeks";
   const correctPriority = "All of the above";
 
   const incorrectAnswers = [];
@@ -203,7 +203,7 @@ document.querySelector("#concern-form").onsubmit = async (e) => {
     "<strong>Concern Level: 98/100.</strong><br>" +
     "Official recommendation: Trust the process.";
 
-  await wait(1200);
+  await wait(2500);
 
   show(prefill ? 4 : 3);
 };
@@ -219,16 +219,36 @@ function scare() {
 }
 function evade(e) {
   e.preventDefault();
+
   escapes++;
-  if (escapes >= 6) return scare();
+
+  if (escapes >= 6) {
+    scare();
+    return;
+  }
+
   const b = tb.getBoundingClientRect();
-  nt.style.left = rand(10, Math.max(10, b.width - nt.offsetWidth - 20)) + "px";
-  nt.style.top = rand(90, Math.max(90, b.height - nt.offsetHeight - 20)) + "px";
+
+  const maxLeft = Math.max(10, b.width - nt.offsetWidth - 20);
+  const maxTop = Math.max(90, b.height - nt.offsetHeight - 20);
+
+  nt.style.left = rand(10, maxLeft) + "px";
+  nt.style.top = rand(90, maxTop) + "px";
   nt.style.bottom = "auto";
   nt.style.transform = "none";
+
+  // Optional progressively more desperate text
+  const messages = [
+    "No tip",
+    "Are you sure?",
+    "Really?",
+    "Come on...",
+    "Last chance!",
+    "Fine."
+  ];
+
+  nt.textContent = messages[Math.min(escapes, messages.length - 1)];
 }
-nt.onmouseenter = evade;
-nt.onfocus = evade;
 nt.onclick = evade;
 document.querySelectorAll(".tip-option").forEach((x) => (x.onclick = scare));
 rb.onclick = () => {

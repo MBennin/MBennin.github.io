@@ -306,3 +306,16 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+#name-hint-list {
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+
+#name-hint-list li {
+  margin-bottom: 7px;
+}
+
+#name-hint-list li:last-child {
+  margin-bottom: 0;
+}
