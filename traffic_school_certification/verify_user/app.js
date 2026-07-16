@@ -19,9 +19,30 @@ function show(i) {
 if (prefill) {
   localStorage.removeItem("returnedFromTip");
   show(1);
-  document.querySelector("#name-hint").textContent =
-    `Required legal first name: ${REQUIRED_NAME}`;
-  document.querySelector("#name-hint").classList.remove("hidden");
+
+  const prefillClues = [
+    "Name must contain at least 5 letters.",
+    `Viewer identity estimate: expected name length is ${REQUIRED_NAME.length}.`,
+    `Identity record begins with "${REQUIRED_NAME[0]}".`,
+    `Identity record ends with "${REQUIRED_NAME.at(-1)}".`,
+    `Partial match: ${REQUIRED_NAME.slice(0, 2)}${"•".repeat(
+      Math.max(0, REQUIRED_NAME.length - 2),
+    )}`,
+    `Identity record: ${REQUIRED_NAME.slice(0, -1)}•`,
+    `Required legal first name: ${REQUIRED_NAME}`,
+  ];
+
+  const nameHint = document.querySelector("#name-hint");
+  const nameHintList = document.querySelector("#name-hint-list");
+
+  prefillClues.forEach((clue) => {
+    const clueItem = document.createElement("li");
+    clueItem.textContent = clue;
+    nameHintList.appendChild(clueItem);
+  });
+
+  nameHint.classList.remove("hidden");
+
   document.querySelector("#relationship-hint").textContent =
     'Previously verified answer: "Concerned father."';
   document.querySelector("#relationship-hint").classList.remove("hidden");
@@ -47,6 +68,7 @@ df.onsubmit = (e) => {
 const nf = document.querySelector("#identity-form"),
   ni = document.querySelector("#viewer-name"),
   nh = document.querySelector("#name-hint"),
+  nhList = document.querySelector("#name-hint-list"),
   rs = document.querySelector("#relationship"),
   rh = document.querySelector("#relationship-hint");
 nf.onsubmit = (e) => {
@@ -63,7 +85,17 @@ nf.onsubmit = (e) => {
         `Identity record: ${n.slice(0, -1)}•`,
         `Required legal first name: ${n}`,
       ];
-    nh.textContent = h[Math.min(nameFails - 1, h.length - 1)];
+    const clue = h[Math.min(nameFails - 1, h.length - 1)];
+
+    const existingClues = [...nhList.querySelectorAll("li")]
+      .map(item => item.textContent);
+
+    if (!existingClues.includes(clue)) {
+      const clueItem = document.createElement("li");
+      clueItem.textContent = clue;
+      nhList.appendChild(clueItem);
+    }
+
     nh.classList.remove("hidden");
     ni.focus();
     return;
@@ -82,16 +114,75 @@ nf.onsubmit = (e) => {
   }
   show(2);
 };
+
+let concernFailures = 0;
+
 document.querySelector("#concern-form").onsubmit = async (e) => {
   e.preventDefault();
-  const panel = document.querySelector("#analysis-panel"),
-    loader = document.querySelector("#fake-loader-bar"),
-    status = document.querySelector("#analysis-status"),
-    log = document.querySelector("#analysis-log");
+
+  const frequency = document.querySelector("#frequency").value;
+  const deadline = document.querySelector("#deadline").value;
+  const priority = document.querySelector("#priority").value;
+  const concernError = document.querySelector("#concern-error");
+
+  const correctFrequency = "Every opportunity that presented itself";
+  const correctDeadline = "In over two months";
+  const correctPriority = "All of the above";
+
+  const incorrectAnswers = [];
+
+  if (frequency !== correctFrequency) {
+    incorrectAnswers.push("asking frequency");
+  }
+
+  if (deadline !== correctDeadline) {
+    incorrectAnswers.push("deadline awareness");
+  }
+
+  if (priority !== correctPriority) {
+    incorrectAnswers.push("competing priorities");
+  }
+
+  if (incorrectAnswers.length > 0) {
+    concernFailures++;
+
+    const messages = [
+      `Concern calibration failed. Please reconsider: ${incorrectAnswers.join(", ")}.`,
+      "Your answers appear to significantly understate the documented level of parental concern.",
+      "System warning: self-report does not match observed nagging frequency.",
+      "Concern analysis cannot continue until historical accuracy improves.",
+      "Please select the answers that most closely resemble what actually happened.",
+    ];
+
+    concernError.textContent =
+      messages[Math.min(concernFailures - 1, messages.length - 1)];
+
+    concernError.classList.remove("hidden");
+    concernError.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    return;
+  }
+
+  concernError.classList.add("hidden");
+
+  const panel = document.querySelector("#analysis-panel");
+  const loader = document.querySelector("#fake-loader-bar");
+  const status = document.querySelector("#analysis-status");
+  const log = document.querySelector("#analysis-log");
+
   panel.classList.remove("hidden");
-  panel.scrollIntoView({ behavior: "smooth", block: "center" });
+  panel.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+
   log.innerHTML = "";
-  for (const [m, v] of [
+  loader.style.width = "0%";
+
+  for (const [message, progress] of [
     ["Checking DMV records…", 22],
     ["Reviewing call and text frequency…", 47],
     ["Comparing concern level against national dad averages…", 72],
@@ -99,17 +190,24 @@ document.querySelector("#concern-form").onsubmit = async (e) => {
     ["Applying common-sense adjustment…", 100],
   ]) {
     await wait(700);
-    loader.style.width = v + "%";
-    const li = document.createElement("li");
-    li.textContent = m;
-    log.appendChild(li);
+    loader.style.width = progress + "%";
+
+    const item = document.createElement("li");
+    item.textContent = message;
+    log.appendChild(item);
   }
+
   await wait(650);
+
   status.innerHTML =
-    "<strong>Concern Level: 98/100.</strong><br>Official recommendation: Trust the process.";
+    "<strong>Concern Level: 98/100.</strong><br>" +
+    "Official recommendation: Trust the process.";
+
   await wait(1200);
+
   show(prefill ? 4 : 3);
 };
+
 const nt = document.querySelector("#no-tip-button"),
   tb = document.querySelector(".tip-box"),
   ps = document.querySelector("#payment-scare"),

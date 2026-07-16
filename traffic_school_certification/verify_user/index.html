@@ -21,7 +21,10 @@
 
 <section id="level-2" class="level">
 <h2>Short Viewer Verification Form</h2><p>Please fill out this short verification form to access the certification.</p>
-<form id="identity-form"><label>Legal first name<input id="viewer-name" type="text" autocomplete="off" required></label><p id="name-hint" class="hint hidden"></p>
+<form id="identity-form"><label>Legal first name<input id="viewer-name" type="text" autocomplete="off" required></label><div id="name-hint" class="hint hidden">
+  <strong>Identity verification clues:</strong>
+  <ul id="name-hint-list"></ul>
+</div>
 <label>Relationship to certificate holder<select id="relationship" required>
 <option value="">Choose one…</option><option>Acquaintance</option><option>Neighbor</option><option>Former traffic-school instructor</option><option>Concerned citizen</option><option>Concerned parent</option><option>Parent</option><option>Father</option><option>Concerned father</option><option>Traffic-school truancy officer</option><option>Unnecessarily invested third party</option><option>Person who has asked at least 14 times</option><option>Certificate enthusiast</option>
 </select></label><p id="relationship-hint" class="hint hidden"></p><button type="submit">Verify identity</button></form></section>
@@ -29,9 +32,37 @@
 <section id="level-3" class="level">
 <h2>Concern Calibration Questionnaire</h2><p>Our system detected elevated concern levels. Please answer truthfully.</p>
 <form id="concern-form">
-<label>How often did you ask about traffic school?<select required><option value="">Choose one…</option><option>Once</option><option>Every few weeks</option><option>Once a day</option><option>Every opportunity that presented itself</option></select></label>
-<label>The course was due…<select required><option value="">Choose one…</option><option>Yesterday</option><option>Next week</option><option>In over two months</option><option>I honestly do not remember anymore</option></select></label>
-<label>Matthew was prioritizing…<select required><option value="">Choose one…</option><option>Emptying the house</option><option>Preparing to move</option><option>Selling belongings</option><option>All of the above</option></select></label>
+<label>
+  How often did you ask about traffic school?
+  <select id="frequency" required>
+    <option value="">Choose one…</option>
+    <option>Once</option>
+    <option>Every few weeks</option>
+    <option>Once a day</option>
+    <option>Every opportunity that presented itself</option>
+  </select>
+</label>
+<label>
+  The course was due…
+  <select id="deadline" required>
+    <option value="">Choose one…</option>
+    <option>Yesterday</option>
+    <option>Next week</option>
+    <option>In over two months</option>
+    <option>I honestly do not remember anymore</option>
+  </select>
+</label>
+<label>
+  Matthew was prioritizing…
+  <select id="priority" required>
+    <option value="">Choose one…</option>
+    <option>Emptying the house</option>
+    <option>Preparing to move</option>
+    <option>Selling belongings</option>
+    <option>All of the above</option>
+  </select>
+</label>
+<p id="concern-error" class="error hidden"></p>
 <button type="submit">Analyze concern level</button></form>
 <div id="analysis-panel" class="analysis-panel hidden"><p id="analysis-status">Analyzing responses…</p><div class="fake-loader"><div id="fake-loader-bar"></div></div><ul id="analysis-log"></ul></div></section>
 
