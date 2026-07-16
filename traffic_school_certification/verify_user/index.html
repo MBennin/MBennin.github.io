@@ -1,189 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="California Parent Traffic School Certificate Retrieval Portal" />
-  <title>Traffic School Certificate Retrieval Portal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Certificate Verification</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="page-shell">
-    <section class="portal-card" aria-live="polite">
-      <header class="portal-header">
-        <div class="seal" aria-hidden="true">✓</div>
-        <div>
-          <p class="eyebrow">Unofficial Parent Verification System</p>
-          <h1>Traffic School Certificate Retrieval Portal</h1>
-        </div>
-      </header>
+<main class="page-shell"><section class="portal-card">
+<header class="portal-header"><div class="seal">✓</div><div><p class="eyebrow">Credential Access Services</p><h1>Secure Certificate Verification</h1></div></header>
+<div class="progress-wrapper"><div class="progress-labels"><span id="level-label">Level 1 of 5</span><span id="progress-percent">20%</span></div><div class="progress-track"><div id="progress-bar"></div></div></div>
 
-      <div class="progress-wrapper">
-        <div class="progress-labels">
-          <span id="level-label">Level 1 of 3</span>
-          <span id="progress-percent">33%</span>
-        </div>
-        <div class="progress-track" aria-hidden="true">
-          <div id="progress-bar" class="progress-bar"></div>
-        </div>
-      </div>
+<section id="level-1" class="level active">
+<h2>Viewer Documentation Check</h2><p>Due to the immense value of this certification, all interested viewers must be verified before access is granted.</p>
+<form id="documents-form"><fieldset><legend>Were verification documents submitted in advance?</legend>
+<label class="row"><input type="radio" name="documents" value="yes" required>Yes, documents were submitted previously</label>
+<label class="row"><input type="radio" name="documents" value="no">No, I still need to complete verification</label></fieldset>
+<div id="code-panel" class="hidden"><label>Enter the verification code emailed when your documents were filed<input id="verification-code" type="text" placeholder="Example: CRED-48291"></label><p id="code-error" class="error hidden"></p></div>
+<button type="submit">Continue</button></form></section>
 
-      <!-- LEVEL 1 -->
-      <section id="level-1" class="level active">
-        <h2>Parent Authentication</h2>
-        <p>
-          Due to an unusually high number of certificate status inquiries,
-          additional verification is required.
-        </p>
+<section id="level-2" class="level">
+<h2>Short Viewer Verification Form</h2><p>Please fill out this short verification form to access the certification.</p>
+<form id="identity-form"><label>Legal first name<input id="viewer-name" type="text" autocomplete="off" required></label><p id="name-hint" class="hint hidden"></p>
+<label>Relationship to certificate holder<select id="relationship" required>
+<option value="">Choose one…</option><option>Acquaintance</option><option>Neighbor</option><option>Former traffic-school instructor</option><option>Concerned citizen</option><option>Concerned parent</option><option>Parent</option><option>Father</option><option>Concerned father</option><option>Traffic-school truancy officer</option><option>Unnecessarily invested third party</option><option>Person who has asked at least 14 times</option><option>Certificate enthusiast</option>
+</select></label><p id="relationship-hint" class="hint hidden"></p><button type="submit">Verify identity</button></form></section>
 
-        <form id="auth-form">
-          <label for="parent-name">Your name</label>
-          <input id="parent-name" name="parentName" type="text" required />
+<section id="level-3" class="level">
+<h2>Concern Calibration Questionnaire</h2><p>Our system detected elevated concern levels. Please answer truthfully.</p>
+<form id="concern-form">
+<label>How often did you ask about traffic school?<select required><option value="">Choose one…</option><option>Once</option><option>Every few weeks</option><option>Once a day</option><option>Every opportunity that presented itself</option></select></label>
+<label>The course was due…<select required><option value="">Choose one…</option><option>Yesterday</option><option>Next week</option><option>In over two months</option><option>I honestly do not remember anymore</option></select></label>
+<label>Matthew was prioritizing…<select required><option value="">Choose one…</option><option>Emptying the house</option><option>Preparing to move</option><option>Selling belongings</option><option>All of the above</option></select></label>
+<button type="submit">Analyze concern level</button></form>
+<div id="analysis-panel" class="analysis-panel hidden"><p id="analysis-status">Analyzing responses…</p><div class="fake-loader"><div id="fake-loader-bar"></div></div><ul id="analysis-log"></ul></div></section>
 
-          <fieldset>
-            <legend>Relationship to certificate holder</legend>
+<section id="level-4" class="level">
+<h2>Support Credential Access Services</h2><p>Would you like to leave a voluntary processing gratuity for the team responsible for making this certificate viewable?</p>
+<div class="tip-box"><button class="tip-option">15%</button><button class="tip-option">20%</button><button class="tip-option">25%</button><button id="no-tip-button" class="secondary" type="button">No tip</button></div>
+<div id="payment-scare" class="payment-scare hidden"><p class="eyebrow">Payment method required</p><h3>Card entry unavailable</h3><p>For your protection, this demonstration does not accept or store payment information. Please return to the waiting room to select another access path.</p><button id="return-waiting-room" class="hidden">Return to waiting room</button></div></section>
 
-            <label class="radio-row">
-              <input type="radio" name="relationship" value="Parent" required />
-              Parent
-            </label>
+<section id="level-5" class="level">
+<h2>Final Certificate Release Authorization</h2><p>Before release, please certify the following:</p>
+<form id="release-form">
+<label class="row"><input type="checkbox" required>I understand repeatedly asking does not accelerate course completion.</label>
+<label class="row"><input type="checkbox" required>I recognize that my intentions were good.</label>
+<label class="row"><input type="checkbox" required>I may have been slightly annoying.</label>
+<label class="row"><input type="checkbox" required>I promise to celebrate instead of interrogate.</label>
+<button type="submit">Release certificate preview</button></form></section>
 
-            <label class="radio-row">
-              <input type="radio" name="relationship" value="Attorney" />
-              Attorney
-            </label>
-
-            <label class="radio-row">
-              <input type="radio" name="relationship" value="Insurance company" />
-              Insurance company
-            </label>
-
-            <label class="radio-row">
-              <input type="radio" name="relationship" value="Concerned Dad" />
-              Concerned Dad
-            </label>
-          </fieldset>
-
-          <label class="check-row">
-            <input id="asked-once" type="checkbox" required />
-            I acknowledge that I have asked about traffic school at least once.
-          </label>
-
-          <button type="submit">Continue Verification</button>
-        </form>
-      </section>
-
-      <!-- LEVEL 2 -->
-      <section id="level-2" class="level">
-        <h2>Concern Calibration Questionnaire</h2>
-        <p>
-          Our system has detected elevated concern levels. Please answer
-          truthfully so we can properly calibrate parental persistence.
-        </p>
-
-        <form id="concern-form">
-          <label for="frequency">How often did you ask about traffic school?</label>
-          <select id="frequency" required>
-            <option value="">Choose one...</option>
-            <option>Once</option>
-            <option>Every few weeks</option>
-            <option>Once a day</option>
-            <option>Every opportunity that presented itself</option>
-          </select>
-
-          <label for="deadline">The course was due...</label>
-          <select id="deadline" required>
-            <option value="">Choose one...</option>
-            <option>Yesterday</option>
-            <option>Next week</option>
-            <option>In over two months</option>
-            <option>I honestly do not remember anymore</option>
-          </select>
-
-          <label for="priority">Matthew was prioritizing...</label>
-          <select id="priority" required>
-            <option value="">Choose one...</option>
-            <option>Emptying the house</option>
-            <option>Preparing to move</option>
-            <option>Selling belongings</option>
-            <option>All of the above</option>
-          </select>
-
-          <button type="submit">Analyze Concern Level</button>
-        </form>
-
-        <div id="analysis-panel" class="analysis-panel hidden">
-          <p id="analysis-status">Analyzing responses...</p>
-          <div class="fake-loader">
-            <div id="fake-loader-bar"></div>
-          </div>
-          <ul id="analysis-log" class="analysis-log"></ul>
-        </div>
-      </section>
-
-      <!-- LEVEL 3 -->
-      <section id="level-3" class="level">
-        <h2>Certificate Release Authorization</h2>
-        <p>
-          Certificate located. Before release, please certify the following:
-        </p>
-
-        <form id="release-form">
-          <label class="check-row">
-            <input type="checkbox" required />
-            I understand repeatedly asking does not accelerate course completion.
-          </label>
-
-          <label class="check-row">
-            <input type="checkbox" required />
-            I recognize that my intentions were good.
-          </label>
-
-          <label class="check-row">
-            <input type="checkbox" required />
-            I may have been slightly annoying.
-          </label>
-
-          <label class="check-row">
-            <input type="checkbox" required />
-            I promise to celebrate instead of interrogate.
-          </label>
-
-          <button type="submit">Release Certificate</button>
-        </form>
-      </section>
-
-      <!-- REVEAL -->
-      <section id="certificate-reveal" class="level">
-        <div class="achievement">
-          <p class="eyebrow">Access Granted</p>
-          <h2>Traffic School Successfully Completed</h2>
-          <p>
-            Congratulations. You have successfully verified that Matthew
-            completed traffic school without requiring parental conservatorship.
-          </p>
-
-          <div class="badge">
-            <span>Achievement Unlocked</span>
-            <strong>Persistent Parent</strong>
-            <span>★★★★★</span>
-          </div>
-
-          <div class="certificate-placeholder">
-            <p>Replace this placeholder with the real certificate image.</p>
-            <img
-              src="certificate-placeholder.png"
-              alt="Traffic school completion certificate"
-              onerror="this.style.display='none'"
-            />
-          </div>
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <div id="confetti-container" aria-hidden="true"></div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<section id="certificate-reveal" class="level"><div class="achievement">
+<p class="eyebrow">Preview Access Granted</p><h2>Traffic School Successfully Completed</h2>
+<p>Thank you for completing the verification process. You are now <strong id="final-queue-number">842,119</strong> in line for access to the official unredacted credential.</p>
+<p>While you wait, please enjoy this privacy-preserving preview.</p>
+<div class="badge"><span>Achievement Unlocked</span><strong>Persistent Parent</strong><span>★★★★★</span></div>
+<div class="certificate-frame"><img src="certificate-placeholder.png" alt="Redacted certificate"><div class="redaction r1"></div><div class="redaction r2"></div><div class="redaction r3"></div><div class="redaction r4"></div><div class="redacted-stamp">PRIVACY REDACTED</div></div>
+</div></section>
+</section></main><div id="confetti-container"></div><script src="app.js"></script></body></html>
