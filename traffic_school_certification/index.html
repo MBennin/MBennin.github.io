@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        http-equiv="refresh"
-        content="0; url=verify_user/"
-    >
-
-    <title>Redirecting...</title>
-
-    <script>
-        window.location.replace("verify_user/");
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Viewing Queue</title>
+  <link rel="stylesheet" href="waiting-room.css">
 </head>
 <body>
-    <p>
-        Redirecting...
-        <a href="verify_user/">Continue to verification</a>
-    </p>
+  <main class="waiting-shell">
+    <section class="waiting-card">
+      <p class="eyebrow">Credential Access Services</p>
+      <h1>Hello and welcome!</h1>
+      <p>Thank you for your interest in viewing our latest achievement and credential. We value the strength and persistence you demonstrated to get here and are excited to share this experience with you after such a long and treacherous journey.</p>
+      <p>Due to extraordinary public interest in this certification, please wait while the viewers who arrived before you complete their sessions.</p>
+
+      <div class="queue-panel">
+        <span>Your position in line</span>
+        <strong id="queue-number">Calculating…</strong>
+        <span id="queue-status">Connecting to queue management services…</span>
+      </div>
+
+      <div class="progress-track"><div id="queue-progress"></div></div>
+      <p id="estimate" class="estimate">Estimated wait: calculating…</p>
+
+      <div id="prefill-panel" class="panel hidden">
+        <h2>Expedite your access</h2>
+        <p>Your wait is unusually long. You may prefill the required verification forms while retaining your place in line.</p>
+        <button id="prefill-button">Prefill verification forms</button>
+      </div>
+
+      <div id="redirect-panel" class="panel hidden">
+        <p>Your position is ready.</p>
+        <strong>Redirecting in <span id="redirect-countdown">5</span>…</strong>
+      </div>
+    </section>
+  </main>
+  <script src="waiting-room.js"></script>
 </body>
 </html>
